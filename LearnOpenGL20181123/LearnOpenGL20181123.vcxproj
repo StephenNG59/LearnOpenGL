@@ -167,13 +167,13 @@
     <ClInclude Include="targetver.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="2-3-lightCasters.cpp" />
     <ClCompile Include="glad.c">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">NotUsing</PrecompiledHeader>
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">NotUsing</PrecompiledHeader>
     </ClCompile>
-    <ClCompile Include="2-1-basicLighting.cpp" />
     <ClCompile Include="stb_image.cpp" />
     <ClCompile Include="stdafx.cpp">
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
@@ -193,6 +193,14 @@
     <None Include="shaders\2-1-basicLighting\colorsFS.glsl" />
     <None Include="shaders\2-1-basicLighting\lampFS.glsl" />
     <None Include="shaders\2-1-basicLighting\lampVS.glsl" />
+    <None Include="shaders\2-2-textureLighting\colorsFS.glsl" />
+    <None Include="shaders\2-2-textureLighting\colorsVS.glsl" />
+    <None Include="shaders\2-2-textureLighting\lampFS.glsl" />
+    <None Include="shaders\2-2-textureLighting\lampVS.glsl" />
+    <None Include="shaders\2-3-lightCasters\colorsFS.glsl" />
+    <None Include="shaders\2-3-lightCasters\colorsVS.glsl" />
+    <None Include="shaders\2-3-lightCasters\lampFS.glsl" />
+    <None Include="shaders\2-3-lightCasters\lampVS.glsl" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

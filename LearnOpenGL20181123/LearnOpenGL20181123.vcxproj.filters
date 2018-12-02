@@ -32,7 +32,7 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2-1-basicLighting.cpp">
+    <ClCompile Include="2-3-lightCasters.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -47,5 +47,13 @@
     <None Include="shaders\2-1-basicLighting\colorsFS.glsl" />
     <None Include="shaders\2-1-basicLighting\lampVS.glsl" />
     <None Include="shaders\2-1-basicLighting\lampFS.glsl" />
+    <None Include="shaders\2-2-textureLighting\colorsFS.glsl" />
+    <None Include="shaders\2-2-textureLighting\colorsVS.glsl" />
+    <None Include="shaders\2-2-textureLighting\lampFS.glsl" />
+    <None Include="shaders\2-2-textureLighting\lampVS.glsl" />
+    <None Include="shaders\2-3-lightCasters\colorsFS.glsl" />
+    <None Include="shaders\2-3-lightCasters\colorsVS.glsl" />
+    <None Include="shaders\2-3-lightCasters\lampFS.glsl" />
+    <None Include="shaders\2-3-lightCasters\lampVS.glsl" />
   </ItemGroup>
 </Project>
