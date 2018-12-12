@@ -21,6 +21,15 @@
     <ClInclude Include="targetver.h">
       <Filter>头文件</Filter>
     </ClInclude>
+    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3Dsphere.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="stdafx.cpp">
@@ -32,7 +41,22 @@
     <ClCompile Include="stb_image.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="2-3-lightCasters.cpp">
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcylinder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcube.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dsphere.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="objectTest.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\Collision.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -55,5 +79,11 @@
     <None Include="shaders\2-3-lightCasters\colorsVS.glsl" />
     <None Include="shaders\2-3-lightCasters\lampFS.glsl" />
     <None Include="shaders\2-3-lightCasters\lampVS.glsl" />
+    <None Include="shaders\3-1-modelLoading\model_fs.glsl" />
+    <None Include="shaders\3-1-modelLoading\model_vs.glsl" />
+    <None Include="shaders\test\colorsFS.glsl" />
+    <None Include="shaders\test\colorsVS.glsl" />
+    <None Include="shaders\test\lampFS.glsl" />
+    <None Include="shaders\test\lampVS.glsl" />
   </ItemGroup>
 </Project>
