@@ -32,7 +32,7 @@ bool firstMouse = true;
 float mouseSensitivity = 0.1f;
 float scrollSensitivity = 0.35f;
 float keySensitivity = 0.25f;
-Camera camera(glm::vec3(0.0f, 0.0f, 15.0f));	// (eyeX, eyeY, eyeZ)
+Camera camera(glm::vec3(0.0f, 0.0f, 30.0f), glm::vec3(0, -5.0f, 0));	// (eye coord), (center coord)
 
 
 // timing
@@ -45,6 +45,8 @@ bool collideCDing = false;
 // lighting
 glm::vec3 lightPos;
 float lightR = 4.0f;
+
+Object3Dsphere ball = Object3Dsphere(0.5f, 32, 20);
 
 int main()
 {
@@ -96,48 +98,88 @@ int main()
 	// ------------------------------------
 	camera.SetPerspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
 
-
 	// -- Objects --
+
+	// ground
+	float groundWidth = 50.0f, groundHeight = 0.2f, groundDepth = 40.0f;
+	glm::vec3 groundPos = glm::vec3(0, -5.0f, 0.0f);
+	Object3Dcube ground(glm::vec3(groundWidth, groundHeight, groundDepth));
+	ground.SetMass(0);
+	ground.SetPosition(groundPos);
+	// wall-e
+	float wallThick = 1.0f, wallHeight = 2.0f;
+	Object3Dcube wall_e(glm::vec3(wallThick, wallHeight, groundDepth));
+	wall_e.SetMass(0);
+	wall_e.SetPosition(groundPos + glm::vec3(0.5f * groundWidth, 0.5f * wallHeight + 0.5f * groundHeight, 0));
+	// wall-n
+	Object3Dcube wall_n(glm::vec3(groundWidth, wallHeight, wallThick));
+	wall_n.SetMass(0);
+	wall_n.SetPosition(groundPos + glm::vec3(0, 0.5f * wallHeight + 0.5f * groundHeight, 0.5f * groundDepth));
+
+
 	// cube
 	Object3Dcube cube(glm::vec3(1.0f, 1.0f, 1.0f));
-	cube.SetPosition(glm::vec3(4.0f, 0.3f, 0.0f));
+	cube.SetPosition(glm::vec3(-7.0f, 0.0f, 0.0f));
 	cube.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Emission);
-	cube.SetMass(5.0f);
-	cube.SetVelocity(glm::vec3(-1.5f, 0.0f, 0.0f));
+	cube.SetMass(0.0f);
+	//cube.SetForce(glm::vec3(-1.0f, 0.0f, 0.0f));
+	cube.SetVelocity(glm::vec3(-0.0f, 0.0f, 0.0f));
 	cube.SetOmega(glm::vec3(0.0f, 5.0f, 0.0f));
+
 	// cylin
-	Object3Dcylinder cylin = Object3Dcylinder(0.5f, 1.0f, 2.0f, 16, 2);
-	cylin.SetPosition(glm::vec3(-2.0f, 0.0f, 0.0f));
+	//Object3Dcylinder cylin = Object3Dcylinder(0.5f, 1.0f, 2.0f, 16, 2);
+	//cylin.SetPosition(glm::vec3(-2.0f, 0.0f, 0.0f));
 	//cylin.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Emission);
-	cylin.AddTexture("resources/textures/matrix.jpg", ObjectTextureType::Emission);
+	//cylin.AddTexture("resources/textures/matrix.jpg", ObjectTextureType::Emission);
+
 	// ball
-	Object3Dsphere ball = Object3Dsphere(0.5f, 32, 20);
-	ball.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Emission);
-	ball.SetPosition(glm::vec3(-5.0f, 0.0f, -2.0f));
-	ball.SetVelocity(glm:: vec3(0));
-	ball.SetMass(0.0f);
-	ball.SetFriction(2.0f);
-	ball.SetERestitution(1.0f);
+	ball.AddTexture("resources/textures/earth_texture.jpg", ObjectTextureType::Emission);
+	ball.SetPosition(glm::vec3(4.0f, 0.0f, 0.0f));
+	ball.SetVelocity(glm:: vec3(-4.0f, 0, 0));
+	//ball.SetOmega(glm::vec3(0, 2.0f, 3.0f));
+	ball.SetOmega(glm::vec3(0, 20.0f, -10.0f));
+	ball.SetMass(0.5f);
+	ball.SetFriction(1.0f);
+	ball.SetERestitution(0.2f);
 	ball.SetAmbient(glm::vec3(1.0f, 0.5f, 0.31f));
 	ball.SetDiffuse(glm::vec3(1.0f, 0.5f, 0.31f));
 	ball.SetSpecular(glm::vec3(5.0f, 0.5f, 0.5f));
 	ball.SetShininess(32.0f);
-	ball.SetOmega(glm::vec3(0.0f, 5.0f, 0.0f));
+	ball.SetForce(glm::vec3(0, -1.0f, 0.0f));
+	ball.SetAirResistanceFactor(0.025f);
+
 	// ball2
-	Object3Dsphere ball2 = Object3Dsphere(1.0f, 32, 20);
-	ball2.SetPosition(glm::vec3(0.0f, 0.0f, 0.0f));
-	ball2.SetVelocity(glm::vec3(0.8f, 0, 0));
-	ball2.SetMass(1.0f);
-	ball2.SetFriction(2.0f);
-	//ball2.AddTexture("resources/textures/wood.png", ObjectTextureType::Emission);
-	ball2.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Emission);
-	//ball2.SetOmega(glm::vec3(2.0f, 2.0f, 2.0f));
+	//Object3Dsphere ball2 = Object3Dsphere(1.0f, 32, 20);
+	//ball2.SetPosition(glm::vec3(2.0f, 0.0f, 0.0f));
+	//ball2.SetVelocity(glm::vec3(1.0f, 0, 0));
+	//ball2.SetMass(0.5f);
+	//ball2.SetFriction(0.5f);
+	//ball2.SetERestitution(0.2f);
+	////ball2.AddTexture("resources/textures/wood.png", ObjectTextureType::Emission);
+	//ball2.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Emission);
+	//ball2.SetForce(glm::vec3(0, -1.0f, 0.0f));
+	//ball2.SetOmega(glm::vec3(0, 0, 5.0f));
+
 	// ball3
 	Object3Dsphere ball3 = Object3Dsphere(0.4f, 32, 20);
 	ball3.SetPosition(glm::vec3(0.0f, 2.4f, 1.2f));
-	ball3.SetVelocity(glm::vec3(0.0f, -0.5f, -0.25f));
-	ball3.SetMass(0.1f);
-	ball3.AddTexture("resources/textures/bricks2.jpg", ObjectTextureType::Ambient);
+	ball3.SetVelocity(glm::vec3(0.0f, -5.5f, -0.25f));
+	ball3.SetOmega(glm::vec3(5));
+	ball3.SetMass(0.5f);
+	ball3.SetERestitution(0.6f);
+	ball3.SetForce(glm::vec3(0, -2.0f, 0));
+	ball3.SetAirResistanceFactor(0.01f);
+	ball3.AddTexture("resources/textures/awesomeface.png", ObjectTextureType::Ambient);
+
+
+	std::vector<Object3Dsphere*> myBalls;
+	myBalls.push_back(&ball3);
+	myBalls.push_back(&ball);
+	std::vector<Object3Dcube*> myTables;
+	myTables.push_back(&ground);
+	myTables.push_back(&wall_e);
+	myTables.push_back(&wall_n);
+
 
 	// point light 1
 	lightingShader.use();		// don't forget to do this !!!!!!!!
@@ -156,7 +198,6 @@ int main()
 		// per-frame time logic
 		// --------------------
 		float currentFrame = glfwGetTime();
-		//std::cout << currentFrame << std::endl;
 		deltaTime = currentFrame - lastFrame;
 		lastFrame = currentFrame;
 		lightPos = glm::vec3(sin(currentFrame) * lightR, 3.0f, cos(currentFrame) * lightR);
@@ -192,41 +233,45 @@ int main()
 		lightingShader.setVec3("pointLights[0].diffuse", diffuseColor);
 		lightingShader.setVec3("pointLights[0].specular", 1.0f, 1.0f, 1.0f);
 
-		// material properties
-		//lightingShader.setVec3("material.ambient", 1.0f, 0.5f, 0.31f);
-		//lightingShader.setVec3("material.diffuse", 1.0f, 0.5f, 0.31f);
-		//lightingShader.setVec3("material.specular", 0.5f, 0.5f, 0.5f); // specular lighting doesn't have full effect on this object's material
-		//lightingShader.setFloat("material.shininess", 32.0f);
-
 
 		glm::mat4 projection = glm::perspective(glm::radians(45.0f), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
-		//cube.TestDraw(camera, lightingShader, projection, cubeVAO);
 		//cube.Draw(camera, lightingShader);
 		//lamp.SetPosition(lightPos);
 		//lamp.Draw(camera, lampShader);
-		cylin.SetPosition(lightPos); 
+		//cylin.SetPosition(lightPos); 
 		//cylin.Draw(camera, lightingShader);
 		//cylin2.Draw(camera, lightingShader);
 
 
 		// #NOTE 如果不传指针，在函数内修改ball的速度对函数外的ball无影响
-		CollideSph2Sph(&ball, &ball2, true);
-		CollideSph2Cube(&ball2, &cube, true);
+		//CollideSph2Sph(&ball, &ball2, true);
+		//CollideSph2Cube(&ball2, &cube, true);
+		//CollideSph2Cube(&ball, &cube, true);
+		//CollideSph2Sph(&ball, &ball2, true);
+		/*CollideSph2Cube(&ball, &ground, true);
+		CollideSph2Cube(&ball3, &ground, true);
+		CollideSph2Sph(&ball, &ball3, true);*/
 
-		//CollideSph2Sph(&ball, &ball3, true);
+		//CollideSph2Cube(&ball3, &ground, true);
+		CollideSph2Cube(myBalls, myTables, true);
+
+
 		//CollideSph2Sph(&ball2, &ball3, true);
 
-		ball.UpdatePosition(deltaTime);
+		ball.UpdatePhysics(deltaTime);
 		ball.Draw(camera, lightingShader);
-		ball2.UpdatePosition(deltaTime);
-		ball2.Draw(camera, lightingShader);
-		//ball3.UpdatePosition(deltaTime);
+		//ball2.UpdatePhysics(deltaTime);
+		//ball2.Draw(camera, lightingShader);
+		ball3.UpdatePhysics(deltaTime);
+		ball3.Draw(camera, lightingShader);
 		//cube.AddAngularMomentum(glm::vec3(0.0f, 0.001f, 0.0f));
 		//cube.SetAngularMomentum(glm::vec3(0.0f, sin(currentFrame), cos(currentFrame)));
-		cube.UpdatePosition(deltaTime);
+		cube.UpdatePhysics(deltaTime);
 		cube.Draw(camera, lightingShader);
-		//ball3.Draw(camera, lightingShader);
-
+		//ground.UpdatePhysics(deltaTime);
+		ground.Draw(camera, lightingShader);
+		wall_n.Draw(camera, lightingShader);
+		wall_e.Draw(camera, lightingShader);
 
 
 
@@ -267,6 +312,17 @@ void processInput(GLFWwindow *window)
 	if (glfwGetKey(window, GLFW_KEY_A) == GLFW_PRESS)
 	{
 		camera.RotateRightByDegree(-keySensitivity);
+	}
+
+	if (glfwGetKey(window, GLFW_KEY_UP) == GLFW_PRESS)
+	{
+		if (vecMod(ball.GetForce()) < 5.0f)
+			ball.AddForce(glm::vec3(0.0f, 0.0f, -0.05f));
+	}
+	if (glfwGetKey(window, GLFW_KEY_DOWN) == GLFW_PRESS)
+	{
+		if (vecMod(ball.GetForce()) < 5.0f)
+			ball.AddForce(glm::vec3(0.0f, 0.0f, 0.05f));
 	}
 }
 

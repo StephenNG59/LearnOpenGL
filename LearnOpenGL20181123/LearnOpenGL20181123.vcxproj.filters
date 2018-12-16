@@ -53,10 +53,10 @@
     <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dsphere.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="objectTest.cpp">
+    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\Collision.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\Collision.cpp">
+    <ClCompile Include="objectTest.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>

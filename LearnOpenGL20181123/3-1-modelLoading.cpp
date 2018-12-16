@@ -83,7 +83,8 @@ int main()
 
 	// load models
 	// -----------
-	Model ourModel("resources/objects/nanosuit/nanosuit.obj");
+	//Model ourModel("resources/objects/nanosuit/nanosuit.obj");
+	Model ourModel("resources/objects/A.D.Matika2.obj");
 
 
 	// draw in wireframe
@@ -110,6 +111,8 @@ int main()
 
 		// don't forget to enable shader before setting uniforms
 		ourShader.use();
+
+		ourShader.setFloat("Time", currentFrame);
 
 		// view/projection transformations
 		glm::mat4 projection = glm::perspective(glm::radians(camera.Fov), (float)SCR_WIDTH / (float)SCR_HEIGHT, 0.1f, 100.0f);
