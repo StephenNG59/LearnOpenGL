@@ -10,6 +10,34 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		README.md = README.md
 	EndProjectSection
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "includes", "includes", "{3214FC8A-BD68-41B2-ACDB-595E697DAC18}"
+	ProjectSection(SolutionItems) = preProject
+		includes\SOIL.c = includes\SOIL.c
+		includes\SOIL.h = includes\SOIL.h
+		includes\stb_image.h = includes\stb_image.h
+		includes\stdafx.h = includes\stdafx.h
+		includes\targetver.h = includes\targetver.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Object", "Object", "{511FF5F5-00B6-497A-B07D-279D4717B368}"
+	ProjectSection(SolutionItems) = preProject
+		includes\MyClass\Object\Collision.cpp = includes\MyClass\Object\Collision.cpp
+		includes\MyClass\Object\Collision.h = includes\MyClass\Object\Collision.h
+		includes\MyClass\Object\Object3D.cpp = includes\MyClass\Object\Object3D.cpp
+		includes\MyClass\Object\Object3D.h = includes\MyClass\Object\Object3D.h
+		includes\MyClass\Object\Object3Dcube.cpp = includes\MyClass\Object\Object3Dcube.cpp
+		includes\MyClass\Object\Object3Dcube.h = includes\MyClass\Object\Object3Dcube.h
+		includes\MyClass\Object\Object3Dcylinder.cpp = includes\MyClass\Object\Object3Dcylinder.cpp
+		includes\MyClass\Object\Object3Dcylinder.h = includes\MyClass\Object\Object3Dcylinder.h
+		includes\MyClass\Object\Object3Dsphere.cpp = includes\MyClass\Object\Object3Dsphere.cpp
+		includes\MyClass\Object\Object3Dsphere.h = includes\MyClass\Object\Object3Dsphere.h
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shader", "Shader", "{F755CF1C-8F38-4234-97E0-15F8F2FB5888}"
+	ProjectSection(SolutionItems) = preProject
+		includes\MyClass\Shader\shader.h = includes\MyClass\Shader\shader.h
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -29,6 +57,10 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{511FF5F5-00B6-497A-B07D-279D4717B368} = {3214FC8A-BD68-41B2-ACDB-595E697DAC18}
+		{F755CF1C-8F38-4234-97E0-15F8F2FB5888} = {3214FC8A-BD68-41B2-ACDB-595E697DAC18}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {ADB23295-C516-4CB4-BF30-892976AAF985}

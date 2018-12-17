@@ -2,18 +2,19 @@
 
 #include <glad\glad.h>
 #include <GLFW\glfw3.h>
-#include <Shader\shader.h>
+#include <MyClass\Shader\shader.h>
 #include <stb_image.h>
 #include <glm\glm.hpp>
 #include <glm\gtc\matrix_transform.hpp>
 #include <glm\gtc\type_ptr.hpp>
 
-#include <MyClass\camera.h>
-#include <MyClass/object/object3D.h>
-#include <MyClass/object/object3Dcube.h>
-#include <MyClass/object/object3Dcylinder.h>
-#include <MyClass/object/object3Dsphere.h>
-#include <MyClass/object/Collision.h>
+#include <MyClass/camera.h>
+#include <MyClass/Object/Object3D.h>
+#include <MyClass/Object/Object3Dcube.h>
+#include <MyClass/Object/Object3Dcylinder.h>
+#include <MyClass/Object/Object3Dsphere.h>
+#include <MyClass/Object/Collision.h>
+//#include <MyClass/resource_manager.h>
 
 
 void framebuffer_size_callback(GLFWwindow* window, int width, int height);
