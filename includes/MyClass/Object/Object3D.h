@@ -45,6 +45,7 @@ typedef struct __texture {
 const unsigned int texKindNum = 4;
 
 float vecMod(glm::vec3 v);
+float vecMod(glm::vec2 v);
 
 class Object3D
 {
@@ -164,6 +165,7 @@ class Object3D
 		glm::vec3 angularMomentum = glm::vec3(0.0f);
 
 		glm::vec3 force = glm::vec3(0);
+		glm::vec3 gravity = glm::vec3(0, -9.8f, 0);
 		glm::vec3 acceleration = glm::vec3(0);
 
 		float air_resistance_factor = 0;
@@ -173,8 +175,11 @@ class Object3D
 
 		//virtual void calcPhysics() = 0;
 		virtual void calcOmega();
+		virtual void calcAngularMomentum();
 
 	public:
+
+		void SetStatic();
 
 		bool IsTouchingDesk = false;
 		bool IsCollidable = false;
@@ -205,6 +210,10 @@ class Object3D
 		glm::vec3 GetForce();
 		void SetForce(glm::vec3 force);
 		void AddForce(glm::vec3 delta_f);
+
+		glm::vec3 GetGravity();
+		void SetGravity(glm::vec3 g);
+		void AddGravity(glm::vec3 delta_g);
 
 		float GetAirResistanceFactor();
 		void SetAirResistanceFactor(float aff);

@@ -15,29 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3D.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcube.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-    <ClInclude Include="D:\dev\OpenGL\includes\MyClass\object\object3Dsphere.h">
-      <Filter>头文件</Filter>
-    </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3D.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcylinder.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dcube.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\object\object3Dsphere.cpp">
-      <Filter>源文件</Filter>
-    </ClCompile>
     <ClCompile Include="src\glad.c">
       <Filter>源文件</Filter>
     </ClCompile>
@@ -50,7 +27,22 @@
     <ClCompile Include="src\stdafx.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
-    <ClCompile Include="D:\dev\OpenGL\includes\MyClass\Object\Collision.cpp">
+    <ClCompile Include="..\includes\MyClass\Game\Game.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\MyClass\Object\Collision.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\MyClass\Object\Object3D.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\MyClass\Object\Object3Dcube.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\MyClass\Object\Object3Dcylinder.cpp">
+      <Filter>源文件</Filter>
+    </ClCompile>
+    <ClCompile Include="..\includes\MyClass\Object\Object3Dsphere.cpp">
       <Filter>源文件</Filter>
     </ClCompile>
   </ItemGroup>
@@ -79,5 +71,22 @@
     <None Include="shaders\test\colorsVS.glsl" />
     <None Include="shaders\test\lampFS.glsl" />
     <None Include="shaders\test\lampVS.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\includes\MyClass\Object\Collision.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\MyClass\Object\Object3D.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\MyClass\Object\Object3Dcube.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\MyClass\Object\Object3Dcylinder.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
+    <ClInclude Include="..\includes\MyClass\Object\Object3Dsphere.h">
+      <Filter>头文件</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

@@ -39,7 +39,7 @@ private:
 	glm::mat4 projectionMatrix;
 
 	// Perspective
-	float fov, aspect, zNear, zFar;
+	float fov, aspect, zNear, zFar;			// #TODO make sure to initialize
 
 	// Update vectors and matrix based on eye coord and center coord
 	void updateCameraVectors()

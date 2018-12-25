@@ -27,6 +27,10 @@ class Object3Dcylinder : public Object3D
 		float radiusTop, radiusBottom, height;
 		int radialSegments, heightSegments;
 
+	public:
+
+		float GetRadius();
+
 
 // -- Helpers --
 
@@ -94,8 +98,13 @@ class Object3Dcylinder : public Object3D
 			// inertiaMoment = 
 		}
 
+		void calcInertiaMoment();
 
-// -- test func --
+		void calcAngularMomentum();
+
+		void calcOmega();
+
+		// -- test func --
 	
 	public:
 		

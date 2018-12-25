@@ -95,6 +95,7 @@ class Object3Dsphere : public Object3D
 
 		//void calcPhysics();
 		void calcOmega();
+		void calcAngularMomentum();
 		void calcInertiaMoment();
 		void SetVelocity(glm::vec3 velocity) { Object3D::SetVelocity(velocity); }
 

@@ -102,6 +102,7 @@ class Object3Dcube : public Object3D
 	protected:
 
 		void calcOmega();
+		void calcAngularMomentum();
 		void calcInertiaMoment();
 		//glm::vec3 calcAirResistAcc();
 

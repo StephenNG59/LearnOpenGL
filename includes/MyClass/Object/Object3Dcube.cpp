@@ -218,6 +218,11 @@ void Object3Dcube::calcOmega()
 
 }
 
+void Object3Dcube::calcAngularMomentum()
+{
+	angularMomentum = omega * inertiaMoment;
+}
+
 void Object3Dcube::calcInertiaMoment()
 {
 	if (omega == glm::vec3(0) || mass == 0)

@@ -11,6 +11,11 @@ float vecMod(glm::vec3 v)
 	return sqrt(v.x * v.x + v.y * v.y + v.z * v.z);
 }
 
+float vecMod(glm::vec2 v)
+{
+	return sqrt(v.x * v.x + v.y * v.y);
+}
+
 
 // -- Get info --
 
@@ -60,13 +65,21 @@ void Object3D::calcAcceleration()
 	{
 		acceleration = glm::vec3(0);
 	}
+	//else if (force != glm::vec3(0))
+	//{
+	//	acceleration = force / mass;
+	//}
 	else
 	{
-		acceleration = force / mass;
+		acceleration = gravity;
 	}
 }
 
 void Object3D::calcOmega()
+{
+}
+
+void Object3D::calcAngularMomentum()
 {
 }
 
@@ -110,6 +123,7 @@ void Object3D::SetPosition(glm::vec3 position)
 	modelMatrix = glm::translate(modelMatrix, deltaPos);
 	// update position (update based on absolute, may exists some deviation from model matrix)
 	this->position = position;
+	//printVec3("setting position:", this->position);
 	calcModelMatrix();
 }
 void Object3D::ChangePosition(glm::vec3 delta)
@@ -122,14 +136,26 @@ void Object3D::ChangePosition(glm::vec3 delta)
 }
 void Object3D::UpdatePhysics(float deltaTime)
 {
-	// linear velocity
-	calcAcceleration();
+	//// linear velocity
+	//if (IsTouchingDesk)
+	//{
+	//	acceleration = glm::vec3(0);
+	//}
+	/*else
+	{*/
+		calcAcceleration();
+	//}
+		//printVec3(acceleration);
 	glm::vec3 airResistAcc = calcAirResistAcc();
+	//printVec3("airresist", airResistAcc);
 	velocity += (acceleration + airResistAcc) * deltaTime;
+	//printVec3("positionbefore", position);
 	position += velocity * deltaTime;
+	//printVec3("velocit", velocity);
+	//printVec3("positionafter", position);
+	//omega = velocity;
 
-
-	// angular velocity
+	//// angular velocity
 	glm::vec3 airResistAngularAcc(0);
 	float omegaAbsValue = vecMod(omega);
 	if (omegaAbsValue != 0)
@@ -138,7 +164,8 @@ void Object3D::UpdatePhysics(float deltaTime)
 		{
 			airResistAngularAcc = calcAirResistAngularAcc();
 		}
-		omega += airResistAngularAcc * deltaTime;
+		AddOmega(airResistAngularAcc * deltaTime);
+	//	omega += airResistAngularAcc * deltaTime;
 		rotationMatrix = glm::rotate(rotationMatrix, omegaAbsValue * deltaTime, omega);
 	}
 
@@ -372,6 +399,12 @@ void Object3D::calculateVAO()
 
 // -- Physics --
 
+void Object3D::SetStatic()
+{
+	SetVelocity(glm::vec3(0));
+	SetOmega(glm::vec3(0));
+}
+
 glm::vec3 Object3D::GetVelocity() { return velocity; }
 void Object3D::SetVelocity(glm::vec3 velocity)
 {
@@ -383,11 +416,12 @@ void Object3D::SetVelocity(glm::vec3 velocity)
 void Object3D::AddVelocity(glm::vec3 deltaVel) { this->velocity += deltaVel; }
 
 glm::vec3 Object3D::GetOmega() { return omega; }
-void Object3D::SetOmega(glm::vec3 omega) { this->omega = omega; calcInertiaMoment();/*calcPhysics();*/ }
+void Object3D::SetOmega(glm::vec3 omega) { this->omega = omega; calcInertiaMoment(); calcAngularMomentum();/*calcPhysics();*/ }
 
 void Object3D::AddOmega(glm::vec3 delta)
 {
 	omega += delta;
+	calcAngularMomentum();
 }
 
 glm::vec3 Object3D::GetAngularMomentum()
@@ -425,6 +459,21 @@ void Object3D::AddForce(glm::vec3 delta_f)
 {
 	force += delta_f;
 	//calcAcceleration();
+}
+
+glm::vec3 Object3D::GetGravity()
+{
+	return gravity;
+}
+
+void Object3D::SetGravity(glm::vec3 g)
+{
+	gravity = g;
+}
+
+void Object3D::AddGravity(glm::vec3 delta_g)
+{
+	gravity += delta_g;
 }
 
 float Object3D::GetAirResistanceFactor()

@@ -2,6 +2,11 @@
 #include "object3Dcylinder.h"
 
 
+float Object3Dcylinder::GetRadius()
+{
+	return (radiusBottom + radiusTop) * 0.5f;
+}
+
 // -- Calculate vertices --
 
 void Object3Dcylinder::generateTorso()
@@ -192,3 +197,18 @@ void Object3Dcylinder::SetPosition(glm::vec3 position) { Object3D::SetPosition(p
 void Object3Dcylinder::ChangePosition(glm::vec3 delta) { Object3D::ChangePosition(delta); }
 void Object3Dcylinder::UpdatePhysics(float deltaTime) { Object3D::UpdatePhysics(deltaTime); }
 
+void Object3Dcylinder::calcInertiaMoment()
+{
+	inertiaMoment = 0.4f * mass * 0.5f * (radiusBottom + radiusTop);		// #NOTE this is not correct but who cares
+}
+
+void Object3Dcylinder::calcAngularMomentum()
+{
+	angularMomentum = omega * inertiaMoment;
+}
+
+void Object3Dcylinder::calcOmega()
+{
+	glm::vec3 L = angularMomentum;
+	omega = L / inertiaMoment;
+}
